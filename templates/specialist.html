@@ -1,0 +1,43 @@
+
+
+  <title>
+    {% block title %}
+      {{specialist.name|safe}}
+    {% endblock %}
+  </title>
+
+  {% block content %}
+
+
+      <div align="center"> Специалисты </div>
+
+      <div class="row marketing">
+
+        {% for specialist in specialists %}
+          <div class="col-lg-6">
+            {%if forloop.counter0|divisibleby:"2" == True %}
+                  <h4>{{specialist.name|safe}}</h4>
+
+                  <p>{{specialist.info|safe}}</p>
+                  <p> <a class="btn btn-inverse"
+                       href="{% url 'recording' specialist_id=specialist.id %}">Запись</a>
+                  </p>
+            {% endif %}
+          </div>
+
+          <div class="col-lg-6">
+            {%if forloop.counter0|divisibleby:"2" == False %}
+                  <h4>{{specialist.name|safe}}</h4>
+
+                  <p>{{specialist.info|safe}}</p>
+                  <p> <a class="btn btn-inverse"
+                       href="{% url 'recording' specialist_id=specialist.id %}">Записаться на прием</a>
+                  </p>
+            {% endif %}
+          </div>
+
+
+
+        {% endfor %}
+      </div>
+  {% endblock content %}
